@@ -1,14 +1,17 @@
 package Hatena::TitleCompactor::SiteConfig;
 use strict;
 use warnings;
+use utf8;
 use base qw(Class::Data::Inheritable);
 
-for my $name (qw/sitename category/) {
+for my $name (qw/sitename sitename2 category/) {
     __PACKAGE__->mk_classdata($name);
     __PACKAGE__->mk_classdata($name.'_prefix_delimiter');
     __PACKAGE__->mk_classdata($name.'_suffix_delimiter');
     __PACKAGE__->mk_classdata($name.'_bracket_start');
     __PACKAGE__->mk_classdata($name.'_bracket_end');
+    __PACKAGE__->mk_classdata($name.'_prefix');
+    __PACKAGE__->mk_classdata($name.'_suffix');
     eval qq{
         sub ${name}_bracket {
             my \$class = shift;
@@ -21,6 +24,11 @@ for my $name (qw/sitename category/) {
 __PACKAGE__->sitename(qr/[\w.-]+?/);
 __PACKAGE__->sitename_prefix_delimiter(qr/\s*[:-]\s*/); # XXX
 __PACKAGE__->sitename_suffix_delimiter(qr/\s*[:>-]\s*/); # XXX
+
+__PACKAGE__->sitename2(qr/\w+?(?:新聞|ニュース|スポーツ)/);
+__PACKAGE__->sitename2_prefix(1);
+__PACKAGE__->sitename2_suffix(1);
+__PACKAGE__->sitename2_bracket(qr/[(]/, qr/[)]/);
 
 __PACKAGE__->category(qr/[\w.-]+?/);
 __PACKAGE__->category_bracket(qr/[(（]/, qr/[)）]/);
@@ -63,25 +71,31 @@ sub generate_prefix_and_suffix {
 
     $method = $name . '_bracket_end';
     my $bend = $class->generate_regexp($class->$method);
+    
+    $method = $name . '_prefix';
+    my $as_prefix = $class->generate_regexp($class->$method);
+    
+    $method = $name . '_suffix';
+    my $as_suffix = $class->generate_regexp($class->$method);
 
     if (defined $body) {
         if (defined $bstart and defined $bend) {
             $prefix = $bstart . $body . $bend;
+            $suffix = $prefix;
         } else {
             $prefix = $body;
+            $suffix = $prefix;
         }
-
-        $suffix = $prefix;
         
-        if (defined $pdelim) {
+        if (defined $prefix and defined $pdelim) {
             $prefix .= $pdelim;
-        } else {
+        } elsif (not $as_prefix) {
             undef $prefix;
         }
 
-        if (defined $sdelim) {
+        if (defined $suffix and defined $sdelim) {
             $suffix = $sdelim . $suffix;
-        } else {
+        } elsif (not $as_suffix) {
             undef $suffix;
         }
     }
@@ -95,7 +109,7 @@ sub generate_pattern {
     my @prefix = (qr/\s+/);
     my @suffix = (qr/\s+/);
 
-    for my $name (qw/sitename category/) {
+    for my $name (qw/sitename sitename2 category/) {
         my ($prefix, $suffix) = $class->generate_prefix_and_suffix($name);
         push @prefix, $prefix if defined $prefix;
         push @suffix, $suffix if defined $suffix;
@@ -106,7 +120,7 @@ sub generate_pattern {
     # XXX: assemble
 
 #warn $prefix_pattern;
-#warn $suffix_pattern;
+warn $suffix_pattern;
     
     $class->prefix_pattern($prefix_pattern);
     $class->suffix_pattern($suffix_pattern);
