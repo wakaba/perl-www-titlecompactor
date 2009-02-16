@@ -29,7 +29,11 @@ sub load_siteconfig {
     my $module = join '::', __PACKAGE__, 'SiteConfig';
     
     my $submodule = $module . '::' . $hostclass;
-    $submodule->require and $module = $submodule;
+    ($submodule->require and $module = $submodule)
+        or ($@ =~ /in \@INC/ or warn $@);
+
+    warn $submodule;
+    
     
     $self->siteconfigs->{$host} = $module;
 }
