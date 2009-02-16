@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 use base qw(Class::Data::Inheritable);
 
-for my $name (qw/sitename sitename2 category/) {
+for my $name (qw/sitename sitename2 category page/) {
     __PACKAGE__->mk_classdata($name);
     __PACKAGE__->mk_classdata($name.'_prefix_delimiter');
     __PACKAGE__->mk_classdata($name.'_suffix_delimiter');
@@ -22,8 +22,8 @@ for my $name (qw/sitename sitename2 category/) {
 }
 
 __PACKAGE__->sitename(qr/[\w.-]+?/);
-__PACKAGE__->sitename_prefix_delimiter(qr/\s*[:-]\s*/); # XXX
-__PACKAGE__->sitename_suffix_delimiter(qr/\s*[:>-]\s*/); # XXX
+__PACKAGE__->sitename_prefix_delimiter(qr/\s*[|:：―‐-]\s*/); # XXX
+__PACKAGE__->sitename_suffix_delimiter(qr/\s*[|:：―‐>-]\s*/); # XXX
 
 __PACKAGE__->sitename2(qr/\w+?(?:新聞|ニュース|スポーツ)/);
 __PACKAGE__->sitename2_prefix(1);
@@ -32,6 +32,11 @@ __PACKAGE__->sitename2_bracket(qr/[(]/, qr/[)]/);
 
 __PACKAGE__->category(qr/[\w.-]+?/);
 __PACKAGE__->category_bracket(qr/[(（]/, qr/[)）]/);
+
+__PACKAGE__->page(qr/その\s*\d+|\d+\/\d+|page\d+/);
+__PACKAGE__->page_prefix(1);
+__PACKAGE__->page_suffix_delimiter(qr/(?: - )?/);
+__PACKAGE__->page_bracket(qr/[(【]?/, qr/[)】]?/);
 
 __PACKAGE__->mk_classdata('prefix_pattern');
 __PACKAGE__->mk_classdata('suffix_pattern');
@@ -109,7 +114,7 @@ sub generate_pattern {
     my @prefix = (qr/\s+/);
     my @suffix = (qr/\s+/);
 
-    for my $name (qw/sitename sitename2 category/) {
+    for my $name (qw/sitename sitename2 category page/) {
         my ($prefix, $suffix) = $class->generate_prefix_and_suffix($name);
         push @prefix, $prefix if defined $prefix;
         push @suffix, $suffix if defined $suffix;

@@ -110,3 +110,73 @@ example
 
 “押米”から９年ぶり！米米ＣＬＵＢが７カ月限定の再結成 | Excite エキサイト : ニュース
 “押米”から９年ぶり！米米ＣＬＵＢが７カ月限定の再結成
+
+//www.itmedia.co.jp
+
+ITIL Managerの視点から：初めてのサービスレベルアグリーメント【その2】 - ITmedia エンタープライズ
+ITIL Managerの視点から：初めてのサービスレベルアグリーメント
+
+ITIL Managerの視点から：初めてのサービスレベルアグリーメント【その3】 (1/2) 
+ITIL Managerの視点から：初めてのサービスレベルアグリーメント
+
+“世界初”トリプルエンジン搭載　TraceMonkey採用の「Lunascape 5.0α」 - ITmedia Biz.ID
+“世界初”トリプルエンジン搭載　TraceMonkey採用の「Lunascape 5.0α」
+
+IT Oasis：マニュアルを精読する人、まずスイッチをいれる人――新「気質分類」 (2/2) - ITmedia エンタープライズ
+IT Oasis：マニュアルを精読する人、まずスイッチをいれる人――新「気質分類」
+
+//builder.japan.zdnet.com
+
+グーグル、オープンソースのウェブブラウザ「Google Chrome」をまもなく公開へ - builder by ZDNet Japan
+グーグル、オープンソースのウェブブラウザ「Google Chrome」をまもなく公開へ
+
+//japan.zdnet.com
+
+グーグル、オープンソースのウェブブラウザ「Google Chrome」をまもなく公開へ - インターネ - page2 - ZDNet Japan
+グーグル、オープンソースのウェブブラウザ「Google Chrome」をまもなく公開へ - インターネ
+
+//codezine.jp
+
+「Lunascape 5.0」アルファ版リリース、　世界最速JavaScriptエンジン「TraceMonkey」を搭載：CodeZine
+「Lunascape 5.0」アルファ版リリース、　世界最速JavaScriptエンジン「TraceMonkey」を搭載
+
+//journal.mycom.co.jp
+
+Lunascape、世界最速JavaScriptエンジンとトリプルエンジン搭載のブラウザ | パソコン | マイコミジャーナル
+Lunascape、世界最速JavaScriptエンジンとトリプルエンジン搭載のブラウザ
+
+Google、Gmailに音声/ビデオチャット機能を追加 | ネット | マイコミジャーナル
+Google、Gmailに音声/ビデオチャット機能を追加
+
+//www.computerworld.jp
+
+モジラ、Firefox 3.1の“ポルノ・モード”詳細を公開──開発テスト版に実装 : ［特集］Webブラウザ - Computerworld.jp
+モジラ、Firefox 3.1の“ポルノ・モード”詳細を公開──開発テスト版に実装 : ［特集］Webブラウザ
+
+グーグル、OSネーティブなWebアプリの開発・実行環境「Native Client」をリリース : Googleウォッチ - Computerworld.jp
+グーグル、OSネーティブなWebアプリの開発・実行環境「Native Client」をリリース : Googleウォッチ
+
+//slashdot.jp
+
+スラッシュドット・ジャパン | Gmailに「ボイス＆ビデオチャット機能」追加
+Gmailに「ボイス＆ビデオチャット機能」追加
+
+//markezine.jp
+
+Gmailに音声＆ビデオチャット機能が登場：MarkeZine（マーケジン）
+Gmailに音声＆ビデオチャット機能が登場
+
+//japan.internet.com
+
+グーグル、Gmail にて「音声・ビデオチャット機能」を提供 - japan.internet.com Webビジネス
+グーグル、Gmail にて「音声・ビデオチャット機能」を提供
+
+//internet.watch.impress.co.jp
+
+IEのシェアが2カ月連続で70％を下回る、米Net Applications調査
+IEのシェアが2カ月連続で70％を下回る、米Net Applications調査
+
+//itpro.nikkeibp.co.jp
+
+オープンソースブラウザ，IE8とOperaを圧倒--JavaScript最新ベンチマーク：ITpro
+オープンソースブラウザ，IE8とOperaを圧倒--JavaScript最新ベンチマーク
