@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 use base qw(Class::Data::Inheritable);
 
-for my $name (qw/sitename sitename2 category page/) {
+for my $name (qw/sitename sitename2 category category2 page/) {
     __PACKAGE__->mk_classdata($name);
     __PACKAGE__->mk_classdata($name.'_prefix_delimiter');
     __PACKAGE__->mk_classdata($name.'_suffix_delimiter');
@@ -114,7 +114,7 @@ sub generate_pattern {
     my @prefix = (qr/\s+/);
     my @suffix = (qr/\s+/);
 
-    for my $name (qw/sitename sitename2 category page/) {
+    for my $name (qw/sitename sitename2 category category2 page/) {
         my ($prefix, $suffix) = $class->generate_prefix_and_suffix($name);
         push @prefix, $prefix if defined $prefix;
         push @suffix, $suffix if defined $suffix;
