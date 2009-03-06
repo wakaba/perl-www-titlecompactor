@@ -31,7 +31,7 @@ __PACKAGE__->sitename2_suffix(1);
 __PACKAGE__->sitename2_bracket(qr/[(]/, qr/[)]/);
 
 __PACKAGE__->category(qr/[\w.-]+?/);
-__PACKAGE__->category_bracket(qr/[(（]/, qr/[)）]/);
+__PACKAGE__->category_bracket(qr/[(（【]/, qr/[)）】]/);
 
 __PACKAGE__->page(qr/その\s*\d+|\d+\/\d+(?:ページ)?|page\d+/);
 __PACKAGE__->page_prefix(1);

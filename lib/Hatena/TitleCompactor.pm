@@ -24,7 +24,7 @@ sub load_siteconfig {
     return if $self->siteconfigs->{$host};
 
     my $hostclass = $host;
-    $hostclass =~ s/(?:^|\.|-)([a-z])/uc $1/ge;
+    $hostclass =~ s/(?:^|\.|-)(.)/uc $1/ge;
 
     my $module = join '::', __PACKAGE__, 'SiteConfig';
     
