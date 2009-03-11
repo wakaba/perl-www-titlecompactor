@@ -1,4 +1,5 @@
 #!/usr/bin/perl 
+# -*- mode: fundamental -*-
 package Test::Hatena::TitleCompactor;
 use strict;
 use warnings;
@@ -164,6 +165,15 @@ Firefox Hacks：ブラウザの新境地？　Ubiquityが変える衝撃のブ�
 
 NHKオンライン、Wii向け「NHKニュース」を提供開始 - ITmedia +D Games
 NHKオンライン、Wii向け「NHKニュース」を提供開始
+
+「あなたに話しかける」　新iPod shuffle登場 - ITmedia +D LifeStyle
+「あなたに話しかける」　新iPod shuffle登場
+
+ナンバーは3倍、速度は8倍!?：“解像度不問”の高速読み取りを実現――「ScanSnap S1500」を試す (1/4) - ITmedia +D PC USER
+ナンバーは3倍、速度は8倍!?：“解像度不問”の高速読み取りを実現――「ScanSnap S1500」を試す
+
+App Town 天気：iPhoneアプリ「ウェザーニュース タッチ」に新機能――画面のカスタマイズが可能に - ITmedia +D モバイル
+App Town 天気：iPhoneアプリ「ウェザーニュース タッチ」に新機能――画面のカスタマイズが可能に
 
 //builder.japan.zdnet.com
 
