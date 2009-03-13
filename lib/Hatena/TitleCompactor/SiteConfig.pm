@@ -32,9 +32,9 @@ for my $name (qw/
     };
 }
 
-__PACKAGE__->sitename(qr/[\w.-]+?/);
-__PACKAGE__->sitename_prefix_delimiter(qr/\s*[|:：―‐-]\s*/); # XXX
-__PACKAGE__->sitename_suffix_delimiter(qr/\s*[|:：―‐>-]\s*/); # XXX
+__PACKAGE__->sitename(qr/[\w.＠-]+?/);
+__PACKAGE__->sitename_prefix_delimiter(qr/\s*[|:：―‐−-]\s*/);
+__PACKAGE__->sitename_suffix_delimiter(qr/\s*[|:：―‐>−-]\s*/);
 
 __PACKAGE__->sitename2(qr/\w+?(?:新聞|ニュース|スポーツ)/);
 __PACKAGE__->sitename2_prefix(1);
@@ -44,12 +44,12 @@ __PACKAGE__->sitename2_bracket(qr/[(]/, qr/[)]/);
 __PACKAGE__->category(qr/[\w.-]+?/);
 __PACKAGE__->category_bracket(qr/[(（【]/, qr/[)）】]/);
 
-__PACKAGE__->page(qr/その\s*\d+|\d+\/\d+ページ|page\d+/);
+__PACKAGE__->page(qr/その\s*\d+|\d+\/\d+ページ|page\d+|前編|後編/);
 __PACKAGE__->page_prefix(1);
 __PACKAGE__->page_suffix_delimiter(qr/(?: - )?/);
 __PACKAGE__->page_bracket(qr/[(（【]?/, qr/[)）】]?/);
 
-__PACKAGE__->page2(qr/\d+\/\d+/);
+__PACKAGE__->page2(qr/\d+\/\d+|上|下/);
 __PACKAGE__->page2_suffix(1);
 __PACKAGE__->page2_suffix_delimiter(qr/(?: - )?/);
 __PACKAGE__->page2_bracket(qr/[(（【]/, qr/[)）】]/);
