@@ -57,7 +57,7 @@ sub _add_data {
     push @{$self->{data}}, $entry;
 }
 
-sub test : Tests {
+sub _1_realdata : Tests {
     my $self = shift;
     
     my $te = Hatena::TitleCompactor->new;
@@ -74,6 +74,19 @@ sub test : Tests {
             is $te->$n->join("\n"), join "\n", @{$entry->{$n} || []};
         }
     }
+}
+
+sub _2_exclusion : Test(2) {
+    my $tc = Hatena::TitleCompactor->new;
+    $tc->host_checker(sub {
+        my $host = shift;
+        return $host eq 'www.example.com';
+    });
+
+    is $tc->compact_title('http://www.example.com/', '記事例 - 例例新聞'),
+        '記事例';
+    is $tc->compact_title('http://www.example.net/', '例例ネット - 目次'),
+        '例例ネット - 目次';
 }
 
 __PACKAGE__->runtests;

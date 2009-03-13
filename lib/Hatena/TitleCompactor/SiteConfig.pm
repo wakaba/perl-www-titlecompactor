@@ -1,12 +1,10 @@
 package Hatena::TitleCompactor::SiteConfig;
 use strict;
 use warnings;
-
 use utf8;
+use base qw(Class::Data::Inheritable);
 
 use constant CAPTURABLE_FIELDS => qw(category series series_number author);
-
-use base qw(Class::Data::Inheritable);
 
 for my $name (qw/
     sitename sitename2
