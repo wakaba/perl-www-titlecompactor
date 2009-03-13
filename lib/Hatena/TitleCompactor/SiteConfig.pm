@@ -131,6 +131,8 @@ sub generate_prefix_and_suffix {
 sub generate_pattern {
     my $class = shift;
 
+    # Regexp::Assemble を使いたいけど文字クラスの構文解析に失敗するみたい
+
     {
         my @prefix = (qr/\s+/);
         my @suffix = (qr/\s+/);
@@ -144,7 +146,6 @@ sub generate_pattern {
         
         my $prefix_pattern = sprintf '^(?:%s)', join '|', @prefix;
         my $suffix_pattern = sprintf '(?:%s)$', join '|', @suffix;
-        # XXX: assemble
         
         $class->other_prefix_pattern($prefix_pattern);
         $class->other_suffix_pattern($suffix_pattern);
@@ -168,8 +169,7 @@ sub generate_pattern {
         
         my $prefix_pattern = @prefix ? sprintf '^(?:%s)', join '|', @prefix : '(?!)';
         my $suffix_pattern = @suffix ? sprintf '(?:%s)$', join '|', @suffix : '(?!)';
-        # XXX: assemble
-        
+
         my $pp = "$i->[0]_prefix_pattern";
         my $sp = "$i->[0]_suffix_pattern";
         $class->$pp($prefix_pattern);
@@ -193,9 +193,9 @@ sub compact_title {
         
         for my $n (CAPTURABLE_FIELDS) {
             while ($title =~ s/$suffix_patterns->{$n}//) {
-                $matched = 1;
-                $obj->$n->push(defined $1 ? $1 : $2);
-            }
+               $matched = 1;
+               $obj->$n->push(defined $1 ? $1 : $2);
+           }
         }
         
         redo if $matched;
