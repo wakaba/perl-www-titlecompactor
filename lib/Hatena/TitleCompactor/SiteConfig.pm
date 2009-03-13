@@ -32,7 +32,7 @@ for my $name (qw/
     };
 }
 
-__PACKAGE__->sitename(qr/[\w.＠-]+?/);
+__PACKAGE__->sitename(qr/(?!第)[\w.＠-]+?(?<!た)(?:（[\w.＠-]+）)?/);
 __PACKAGE__->sitename_prefix_delimiter(qr/\s*[|:：―‐−-]\s*/);
 __PACKAGE__->sitename_suffix_delimiter(qr/\s*[|:：―‐>−-]\s*/);
 
