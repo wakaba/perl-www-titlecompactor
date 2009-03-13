@@ -4,7 +4,13 @@ use warnings;
 use utf8;
 use base qw(Class::Data::Inheritable);
 
-for my $name (qw/sitename sitename2 category category2 page/) {
+for my $name (qw/
+    sitename sitename2
+    category category2
+    page page2
+    author
+    garbage
+/) {
     __PACKAGE__->mk_classdata($name);
     __PACKAGE__->mk_classdata($name.'_prefix_delimiter');
     __PACKAGE__->mk_classdata($name.'_suffix_delimiter');
@@ -33,10 +39,15 @@ __PACKAGE__->sitename2_bracket(qr/[(]/, qr/[)]/);
 __PACKAGE__->category(qr/[\w.-]+?/);
 __PACKAGE__->category_bracket(qr/[(（【]/, qr/[)）】]/);
 
-__PACKAGE__->page(qr/その\s*\d+|\d+\/\d+(?:ページ)?|page\d+/);
+__PACKAGE__->page(qr/その\s*\d+|\d+\/\d+ページ|page\d+/);
 __PACKAGE__->page_prefix(1);
 __PACKAGE__->page_suffix_delimiter(qr/(?: - )?/);
-__PACKAGE__->page_bracket(qr/[(【]?/, qr/[)】]?/);
+__PACKAGE__->page_bracket(qr/[(（【]?/, qr/[)）】]?/);
+
+__PACKAGE__->page2(qr/\d+\/\d+/);
+__PACKAGE__->page2_suffix(1);
+__PACKAGE__->page2_suffix_delimiter(qr/(?: - )?/);
+__PACKAGE__->page2_bracket(qr/[(（【]/, qr/[)）】]/);
 
 __PACKAGE__->mk_classdata('prefix_pattern');
 __PACKAGE__->mk_classdata('suffix_pattern');
@@ -114,7 +125,7 @@ sub generate_pattern {
     my @prefix = (qr/\s+/);
     my @suffix = (qr/\s+/);
 
-    for my $name (qw/sitename sitename2 category category2 page/) {
+    for my $name (qw/sitename sitename2 category category2 page page2 author garbage/) {
         my ($prefix, $suffix) = $class->generate_prefix_and_suffix($name);
         push @prefix, $prefix if defined $prefix;
         push @suffix, $suffix if defined $suffix;

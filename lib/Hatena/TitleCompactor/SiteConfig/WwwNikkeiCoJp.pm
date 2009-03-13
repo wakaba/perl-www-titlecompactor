@@ -23,6 +23,11 @@ __PACKAGE__->page_suffix(0);
 __PACKAGE__->page_prefix_delimiter(undef);
 __PACKAGE__->page_suffix_delimiter(undef);
 
+__PACKAGE__->page2_prefix(0);
+__PACKAGE__->page2_suffix(0);
+__PACKAGE__->page2_prefix_delimiter(undef);
+__PACKAGE__->page2_suffix_delimiter(undef);
+
 __PACKAGE__->generate_pattern;
 
 1;
