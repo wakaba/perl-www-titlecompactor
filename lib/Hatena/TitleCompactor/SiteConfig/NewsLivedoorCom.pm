@@ -10,12 +10,12 @@ __PACKAGE__->sitename_prefix_delimiter(' - ');
 __PACKAGE__->sitename_suffix_delimiter(qr/ -? /);
 __PACKAGE__->sitename_bracket(undef, undef);
 
-__PACKAGE__->category(qr/[^【】]+/);
-__PACKAGE__->category_prefix(1);
-__PACKAGE__->category_suffix(0);
-__PACKAGE__->category_prefix_delimiter(undef);
-__PACKAGE__->category_suffix_delimiter(undef);
-__PACKAGE__->category_bracket('【', '】');
+__PACKAGE__->series(qr/[^【】]+/);
+__PACKAGE__->series_prefix(1);
+__PACKAGE__->series_suffix(0);
+__PACKAGE__->series_prefix_delimiter(undef);
+__PACKAGE__->series_suffix_delimiter(undef);
+__PACKAGE__->series_bracket('【', '】');
 
 __PACKAGE__->generate_pattern;
 

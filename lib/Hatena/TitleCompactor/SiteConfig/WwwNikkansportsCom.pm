@@ -9,7 +9,7 @@ __PACKAGE__->sitename_prefix_delimiter(undef);
 __PACKAGE__->sitename_suffix_delimiter(qr/ [:-] /);
 __PACKAGE__->sitename_bracket(undef, undef);
 
-__PACKAGE__->category(qr/.+/);
+__PACKAGE__->category(qr/\w+ニュース/);
 __PACKAGE__->category_prefix_delimiter(undef);
 __PACKAGE__->category_suffix_delimiter(qr/ [>-] /);
 __PACKAGE__->category_bracket(undef, undef);

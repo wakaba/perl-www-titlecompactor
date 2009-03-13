@@ -25,12 +25,12 @@ __PACKAGE__->category_suffix(1);
 __PACKAGE__->category_suffix_delimiter(' - ');
 __PACKAGE__->category_bracket(undef, undef);
 
-__PACKAGE__->category2('甘口辛口');
-__PACKAGE__->category2_prefix(1);
-__PACKAGE__->category2_prefix_delimiter(undef);
-__PACKAGE__->category2_suffix(0);
-__PACKAGE__->category2_suffix_delimiter(undef);
-__PACKAGE__->category2_bracket('【', '】');
+__PACKAGE__->series('甘口辛口');
+__PACKAGE__->series_prefix(1);
+__PACKAGE__->series_prefix_delimiter(undef);
+__PACKAGE__->series_suffix(0);
+__PACKAGE__->series_suffix_delimiter(undef);
+__PACKAGE__->series_bracket('【', '】');
 
 __PACKAGE__->page(qr{[0-9]+/[0-9]+ページ|[0-9]+});
 __PACKAGE__->page_prefix(0);

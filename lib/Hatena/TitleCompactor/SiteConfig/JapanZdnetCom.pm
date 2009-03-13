@@ -17,6 +17,13 @@ __PACKAGE__->category_suffix(1);
 __PACKAGE__->category_suffix_delimiter(' - ');
 __PACKAGE__->category_bracket(undef, undef);
 
+__PACKAGE__->series(qr/IT業界を生き抜く秘密10箇条?|The future of\.\.\.|\w+方|まだ間に|オール[\w・]+/);
+__PACKAGE__->series_prefix(0);
+__PACKAGE__->series_prefix_delimiter(undef);
+__PACKAGE__->series_suffix(1);
+__PACKAGE__->series_suffix_delimiter(' - ');
+__PACKAGE__->series_bracket(undef, undef);
+
 __PACKAGE__->garbage(' -');
 __PACKAGE__->garbage_prefix(0);
 __PACKAGE__->garbage_prefix_delimiter(undef);

@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use base qw(Class::Accessor::Fast Class::Data::Inheritable);
 
+use List::Rubyish;
 use URI;
 use UNIVERSAL::require;
 
@@ -10,6 +11,14 @@ require Hatena::TitleCompactor::SiteConfig;
 
 __PACKAGE__->mk_accessors(qw(
     siteconfigs
+),
+
+# CAPTURABLE_FIELDS
+qw(
+    category
+    series
+    series_number
+    author
 ));
 
 sub new {
@@ -47,8 +56,14 @@ sub compact_title {
     # XXX: decode percent-encoding? case-sensitivity? trailing "."?
     
     $self->load_siteconfig($host);
+
+    # CAPTURABLE_FIELDS
+    $self->category(List::Rubyish->new);
+    $self->series(List::Rubyish->new);
+    $self->series_number(List::Rubyish->new);
+    $self->author(List::Rubyish->new);
     
-    return $self->siteconfigs->{$host}->compact_title($title);
+    return $self->siteconfigs->{$host}->compact_title($self, $title);
 }
 
 1;
