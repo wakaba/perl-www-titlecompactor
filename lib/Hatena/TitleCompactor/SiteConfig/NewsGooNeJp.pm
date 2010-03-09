@@ -11,7 +11,7 @@ __PACKAGE__->sitename_suffix(1);
 __PACKAGE__->sitename_suffix_delimiter(' - ');
 __PACKAGE__->sitename_bracket(undef, undef);
 
-__PACKAGE__->sitename2(qr/[^()]+?(?:ニュース|タイムズ|新聞|通信)|Voice|WIRED VISION|ファクタ|夕刊フジ|ダイヤモンド・オンライン|GLOBIS\.JP|日経.+|goo.+/);
+__PACKAGE__->sitename2(qr/(?:\w|\d|\s|・|-)+?(?:ニュース|タイムズ|新聞|通信)|Voice|WIRED VISION|ファクタ|夕刊フジ|ダイヤモンド・オンライン|GLOBIS\.JP|日経.+|goo.+/);
 __PACKAGE__->sitename2_prefix(0);
 __PACKAGE__->sitename2_prefix_delimiter(undef);
 __PACKAGE__->sitename2_suffix(1);
@@ -23,7 +23,7 @@ __PACKAGE__->series_prefix(1);
 __PACKAGE__->series_prefix_delimiter(undef);
 __PACKAGE__->series_suffix(1);
 __PACKAGE__->series_suffix_delimiter(undef);
-__PACKAGE__->series_bracket(qr/[【＜]/, qr/[】＞]/);
+__PACKAGE__->series_bracket(qr/(?:【|＜)/, qr/(?:】|＞)/);
 
 __PACKAGE__->category2(qr/\w+/);
 __PACKAGE__->category2_prefix(0);

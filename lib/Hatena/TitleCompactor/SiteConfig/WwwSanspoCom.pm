@@ -37,7 +37,7 @@ __PACKAGE__->page_prefix(0);
 __PACKAGE__->page_prefix_delimiter(undef);
 __PACKAGE__->page_suffix(1);
 __PACKAGE__->page_suffix_delimiter(' ');
-__PACKAGE__->page_bracket(qr/[(（]/, qr/[)）]/);
+__PACKAGE__->page_bracket(qr/(?:\(|（)/, qr/(?:\)|）)/);
 
 __PACKAGE__->generate_pattern;
 

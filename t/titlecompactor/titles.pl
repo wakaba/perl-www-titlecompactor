@@ -89,6 +89,134 @@ sub _2_exclusion : Test(2) {
         '例例ネット - 目次';
 }
 
+my $news_titles = q[
+http://japan.cnet.com/ , /(?::.*? )?- CNET Japan/
+http://www.itmedia.co.jp/ , /ITmedia[^:：]+[:：]|- ITmedia .*?$/
+http://it.nikkei.co.jp/ , /(?:-[^-:]*)?:IT-PLUS/
+http://internet.watch.impress.co.jp/ , ""
+http://headlines.yahoo.co.jp/ , /(?:（.*?）)? - Yahoo!ニュース/
+http://news.livedoor.com/ , /livedoor ニュース - |livedoor スポーツ/
+http://bb.watch.impress.co.jp/ , ""
+http://www.watch.impress.co.jp/ , ""
+http://www.asahi.com/ , /asahi\.com：|asahi\.com:|asahi\.com（朝日新聞社）：|(?:- [^-]+)+/
+http://mainichi.jp/ , /(?:\(まんたんウェブ\) )?- 毎日ｊｐ\(毎日新聞\)/
+http://sankei.jp.msn.com/ , "- MSN産経ニュース"
+http://www.nhk.or.jp/ , "NHKニュース"
+http://www3.nhk.or.jp/ , "NHKニュース"
+http://www.zakzak.co.jp/ , /[:：]?ZAKZAK| - 芸能/
+http://www.yomiuri.co.jp/ , /:.*$/
+http://arena.nikkeibp.co.jp/ , ""
+http://japan.internet.com/ ,  /- japan.internet.com|Webビジネス/
+http://itpro.nikkeibp.co.jp/ , "：ITpro"
+http://k-tai.impress.co.jp/ , ""
+http://www.nikkeibp.co.jp/ , /(?:| [^|]+)?| nikkei BPnet 〈日経BPネット〉/
+http://www.nikkei.co.jp/ , /[-‐]?\s*NIKKEI NET（日経ネット）：|[-‐]?\s*主要ニュース|[-‐]?\s*各分野の重要ニュースを掲載/
+http://www.cnn.co.jp/ , "CNN.co.jp:"
+http://pc.watch.impress.co.jp/ , ""
+http://wiredvision.jp/ , "| WIRED VISION"
+http://slashdot.jp/ , /- スラッシュドット・ジャパン|スラッシュドット・ジャパン｜|スラッシュドット・ジャパン \||スラッシュドット ジャパン \|/
+http://www.4gamer.net/ , /4Gamer\.net [―-]/
+http://plusd.itmedia.co.jp/ , /ITmedia[^:：]+[:：]|- ITmedia .*?$/
+http://www.sanspo.com/ , /(?:\(\d+/\d+ページ\) )?(?:- 芸能 )?- SANSPO\.COM/
+http://journal.mycom.co.jp/ , /(?:\| [^|]+ \| )?マイコミジャーナル/
+http://japan.zdnet.com/ , /(?:- [^-]* )?- ZDNet Japan/
+http://builder.japan.zdnet.com/ , "- builder by ZDNet Japan"
+http://www.computerworld.jp/ , "- Computerworld.jp"
+http://www.atmarkit.co.jp/ , /− ＠I|＠IT：(?:連載：)?/
+http://www.iza.ne.jp/ , ":イザ！"
+http://www.nikkansports.com/ , /: nikkansports\.com|nikkansports| - (.+)$/
+http://www.sponichi.co.jp/ , /(?:（.*?） )?― スポニチ Sponichi Annex ニュース/
+http://www.forest.impress.co.jp/ , "窓の杜 -"
+http://www.excite.co.jp/ , /\| (?:Excite )?(?:エキサイト)? ?:? ?ニュース/
+http://techtarget.itmedia.co.jp/ , "− TechTargetジャパン
+http://news.goo.ne.jp/ , /(?:\(スポーツニッポン\) )?- goo ニュース/
+http://gihyo.jp/ , "｜gihyo.jp … 技術評論社"
+http://ascii.jp/ , ""
+http://jibun.atmarkit.co.jp/ , "－ ＠IT自分戦略研究所"
+http://web-tan.forum.impressrd.jp/ , "| Web担当者Forum"
+http://natalie.mu/ , "ナタリー -"
+http://www.jiji.com/ , "時事ドットコム："
+http://www.47news.jp/ , /- 47NEWS（よんななニュース|- 47トピックス/
+http://www.chunichi.co.jp/ , /中日スポーツ:|中日新聞:|\(CHUNICHI Web\)|:[^:]+$/
+http://www.afpbb.com/ , /: AFPBB News|\s+.+ニュース/
+http://codezine.jp/ , "：CodeZine"
+http://enterprisezine.jp/ , " Enterprise Zine"
+http://markezine.jp/ , "：MarkeZine（マーケジン）"
+http://careerzine.jp/ , "：IT＆ウェブ業界の転職をサポートする「CAREERzine」（キャリアジン）"
+http://moneyzine.jp/ , "：株／FX・投資と経済がよくわかるMONEYzin"
+];
+
+sub wakabafy : Tests {
+        my $self = shift;
+    
+    for my $entry (@{$self->{data}}) {
+        my $url = $entry->{url};
+        $url = 'http://' . $entry->{host} unless defined $url;
+        
+        my $result = title_wakabafy($entry->{input}, $entry->{host});
+        is $result, $entry->{expected};
+    }
+
+}
+
+
+my %news_title = map {
+    @$_
+} grep {
+    defined
+} map {
+    if ($_->[1] =~ /^"/) {
+        $_->[1] =~ s/^"//;
+        $_->[1] =~ s/"$//;
+        if (length $_->[1]) {
+            [URI->new($_->[0])->host, qr/\Q$_->[1]\E/]
+        } else {
+            undef;
+        }
+    } elsif ($_->[1] =~ m[^/]) {
+        $_->[1] =~ s[^/][];
+        $_->[1] =~ s[/$][];
+        [URI->new($_->[0])->host, qr/$_->[1]/]
+    } else {
+        die "Syntax error: $_[1]";
+    }
+} map {
+    [split /\s*,\s*/, $_, 2]
+} grep {
+    length
+} split /[\x0D\x0A]+/, $news_titles;
+
+use URI;
+
+opendir my $d, 'lib/Hatena/TitleCompactor/SiteConfig';
+while ($_ = readdir $d) {
+  next unless $_ =~/\.pm$/;
+  require "Hatena/TitleCompactor/SiteConfig/$_" or warn $_;
+}
+close $d;
+
+sub title_wakabafy {
+    my $title = shift; #$self->title;
+    my $host = shift; #$self->domain;
+
+    # return $title unless $self->param('url') =~ m{^[A-Za-z0-9-]+://([^:/]+)}o;
+    return $title unless $host;
+
+    my $sitename = $news_title{$host};
+
+    if (defined $sitename) {
+        $title =~ s/$sitename//g;
+    }
+
+    $title =~ s/\(.+ページ\)//g;
+    $title =~ s!\(\d\/\d\)!!g;
+    $title =~ s/^\s+//g;
+    $title =~ s/\s+$//g;
+
+    return $title;
+}
+
+
 __PACKAGE__->runtests;
 
 1;
