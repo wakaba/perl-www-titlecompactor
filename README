@@ -1,0 +1,45 @@
+WWW::TitleCompactor
+~~~~~~~~~~~~~~~~~~~
+
+WWW::TitleCompactor は、規則ベースで Web ページのタイトルから Web 
+サイトのタイトルを除去して (狭義の) Web ページのタイトルを抜き出す
+モジュールです。
+
+* 使い方
+
+t/titlecompactor/titles.pl と空気を読んでください。
+
+* 依存性
+
+Perl 5.8 以上と Class::Data::Inheritable, Class::Accessor::Fast,
+List::Rubyish, UNIVERSAL::require が必要です。
+
+* テスト
+
+  $ make test
+
+で依存モジュールを ./local にインストールしてテストを実行します。
+
+また、 Travis CI <https://travis-ci.org/wakaba/perl-www-titlecompactor>
+で自動的にテストが実行されています。
+
+* 入手
+
+このモジュールの最新版は GitHub
+<https://github.com/wakaba/perl-www-titlecompactor> にあります。
+
+* 著者
+
+若葉 <wakabatan@hatena.ne.jp>。
+
+* 謝辞
+
+このモジュールは元々ははてなブックマークの合宿で開発したものです。
+開発の過程で大変有意義な助言を頂いた naoya さんに感謝します。
+
+* ライセンス
+
+Copyright 2009-2013 Hatena <http://www.hatena.ne.jp/company/>.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
