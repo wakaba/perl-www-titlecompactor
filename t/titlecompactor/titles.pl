@@ -1,6 +1,6 @@
 #!/usr/bin/perl 
 # -*- mode: fundamental -*-
-package Test::Hatena::TitleCompactor;
+package Test::WWW::TitleCompactor;
 use strict;
 use warnings;
 use utf8;
@@ -9,7 +9,7 @@ use lib qw(lib);
 use base qw(Test::Class);
 use Test::More;
 
-use Hatena::TitleCompactor;
+use WWW::TitleCompactor;
 
 sub prepare_data : Test(setup) {
     my $self = shift;
@@ -60,7 +60,7 @@ sub _add_data {
 sub _1_realdata : Tests {
     my $self = shift;
     
-    my $te = Hatena::TitleCompactor->new;
+    my $te = WWW::TitleCompactor->new;
     
     for my $entry (@{$self->{data}}) {
         my $url = $entry->{url};
@@ -77,7 +77,7 @@ sub _1_realdata : Tests {
 }
 
 sub _2_exclusion : Test(2) {
-    my $tc = Hatena::TitleCompactor->new;
+    my $tc = WWW::TitleCompactor->new;
     $tc->host_checker(sub {
         my $host = shift;
         return $host eq 'www.example.com';
@@ -188,10 +188,10 @@ my %news_title = map {
 
 use URI;
 
-opendir my $d, 'lib/Hatena/TitleCompactor/SiteConfig';
+opendir my $d, 'lib/WWW/TitleCompactor/SiteConfig';
 while ($_ = readdir $d) {
   next unless $_ =~/\.pm$/;
-  require "Hatena/TitleCompactor/SiteConfig/$_" or warn $_;
+  require "WWW/TitleCompactor/SiteConfig/$_" or warn $_;
 }
 close $d;
 
